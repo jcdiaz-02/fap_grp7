@@ -5,6 +5,9 @@ import 'package:fap_grp7/constants.dart';
 import 'tabs/in_theaters.dart';
 import 'tabs/coming_soon.dart';
 
+import 'package:fap_grp7/models/genre_list_main.dart';
+import 'package:fap_grp7/models/genre.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -14,7 +17,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late TabController _tabController;
-
+  var mainGenreList= MainGenreList().getMainGenreList() as List<Genre>;
+  var selectedGenres;
   @override
   void initState() {
     super.initState();
@@ -54,10 +58,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   height: kTabHeight,
                   text: 'Box Office'),
               Tab(
-                icon: Icon(
-                    Icons.calendar_today,
-                    size: kTabIconSize
-                ),
+                icon: Icon(Icons.calendar_today, size: kTabIconSize),
                 height: kTabHeight,
                 text: 'Coming Soon',
               ),
@@ -79,6 +80,37 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         ),
         body: Column(
           children: [
+            Container(
+              height: 40,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: mainGenreList.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: (){
+                        setState(() {
+                          mainGenreList[index].toggleActive();
+                          selectedGenres= mainGenreList.where((element) => element.active==true);
+                          selectedGenres.forEach((element) { print(element.title);});
+                          //print(mainGenreList[index].active);
+                        });
+                      },
+                      child: Container(
+                        margin: EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                          color: mainGenreList[index].active== true ? Colors.amberAccent : Colors.indigo,
+                          border: Border.all(
+                            width: 1.5, color: kPrimaryColor),
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(5))
+                        ),
+                        alignment: Alignment.center,
+                        width: 100,
+                        child: Text("${mainGenreList[index].title}")
+                      ),
+                    );
+              }),
+            ),
             Expanded(
               child: TabBarView(
                 controller: _tabController,

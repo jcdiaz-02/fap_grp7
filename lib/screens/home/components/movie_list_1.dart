@@ -59,12 +59,12 @@ class _MovieList1State extends State<MovieList1> {
                             '${widget.listInTheaters[index].title}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: kMovieTitleStyle
+                            style: kMovieCardTitleStyle
                         )
                     ),
                     Text(
                       '${widget.listInTheaters[index].year}',
-                      style: kMovieYearStyle,
+                      style: kMovieCardYearStyle,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 13.0),
@@ -74,7 +74,7 @@ class _MovieList1State extends State<MovieList1> {
                           '${widget.listInTheaters[index].plot}',
                           overflow: TextOverflow.ellipsis,
                           maxLines: 3,
-                          style: kMoviePlotStyle,
+                          style: kMovieCardPlotStyle,
                         ),
                       ),
                     ),
@@ -82,7 +82,7 @@ class _MovieList1State extends State<MovieList1> {
                         width: 180,
                         child: Text(
                             '${widget.listInTheaters[index].releaseState}',
-                            style: kMovieReleaseStateStyle
+                            style: kMovieCardReleaseStateStyle
                         )
                     ),
                   ],

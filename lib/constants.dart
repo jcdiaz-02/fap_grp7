@@ -34,21 +34,24 @@ const kTabUnselectedStyle = TextStyle(
   color: Color(0xFF787A91),
 );
 
-const kMovieTitleStyle = TextStyle(
+const kMovieCardTitleStyle = TextStyle(
 fontSize: 18,
 fontWeight: FontWeight.bold,
 );
 
-const kMovieYearStyle = TextStyle(
+const kMovieCardYearStyle = TextStyle(
     fontSize: 16,
     color: Color(0xFF787A91)
 );
 
-const kMoviePlotStyle = TextStyle(
+const kMovieCardPlotStyle = TextStyle(
     fontSize: 13,
 );
 
-const kMovieReleaseStateStyle= TextStyle(
+const kMovieCardReleaseStateStyle= TextStyle(
     fontSize: 13,
     color: Color(0xFF787A91)
 );
+
+const kMovieCardGenreStyle= TextStyle(
+fontSize: 12,);
