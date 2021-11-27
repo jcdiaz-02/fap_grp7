@@ -35,7 +35,7 @@ const kTabUnselectedStyle = TextStyle(
 );
 
 const kMovieTitleStyle = TextStyle(
-fontSize: 20,
+fontSize: 18,
 fontWeight: FontWeight.bold,
 );
 
@@ -46,4 +46,9 @@ const kMovieYearStyle = TextStyle(
 
 const kMoviePlotStyle = TextStyle(
     fontSize: 13,
+);
+
+const kMovieReleaseStateStyle= TextStyle(
+    fontSize: 13,
+    color: Color(0xFF787A91)
 );

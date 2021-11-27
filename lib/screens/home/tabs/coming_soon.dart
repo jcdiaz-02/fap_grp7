@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../components/movie_list.dart';
+import '../components/movie_list_3.dart';
 import 'package:fap_grp7/services/movie_network.dart';
 
 class ComingSoon extends StatefulWidget {
@@ -20,7 +20,7 @@ class _ComingSoonState extends State<ComingSoon> {
           if (snapshot.data == null) {
             return Text("Error getting Movies");
           } else {
-            return MovieList(listInTheaters: snapshot.data.listInTheaters,);
+            return MovieList3(listInTheaters: snapshot.data.listInTheaters,);
           }
         } else {
           return Center(child: CircularProgressIndicator());
