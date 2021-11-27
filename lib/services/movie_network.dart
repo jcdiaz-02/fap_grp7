@@ -19,7 +19,7 @@ class MovieModel {
       movieData = Movie.fromJson(jsonDecode(response.body));
     }
     else{
-      print('error');
+      print('Error Getting In Theaters');
     }
 
     return movieData;
@@ -33,6 +33,19 @@ class MovieModel {
     }
     else{
       print('Error Getting Coming Soon');
+    }
+
+    return movieData;
+  }
+
+  Future<dynamic>? getBoxOffice() async{
+    http.Response response= await http.get(
+        Uri.parse('$imdbBoxOffice/$apiKey'));
+    if (response.statusCode == 200) {
+      movieData = Movie.fromJson(jsonDecode(response.body));
+    }
+    else{
+      print('Error Getting Box Office');
     }
 
     return movieData;

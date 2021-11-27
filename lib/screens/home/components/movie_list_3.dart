@@ -5,9 +5,9 @@ import 'package:fap_grp7/constants.dart';
 import 'genre_list.dart';
 
 class MovieList3 extends StatefulWidget {
-  const MovieList3({Key? key, this.listInTheaters}) : super(key: key);
+  const MovieList3({Key? key, this.listComingSoon}) : super(key: key);
 
-  final listInTheaters;
+  final listComingSoon;
 
   @override
   _MovieList3State createState() => _MovieList3State();
@@ -18,7 +18,7 @@ class _MovieList3State extends State<MovieList3> {
   Widget build(BuildContext context) {
     return Center(
         child: ListView.builder(
-        itemCount: widget.listInTheaters.length,
+        itemCount: widget.listComingSoon.length,
         itemBuilder: (context, index) {
         return Container(
           height: 200,
@@ -44,7 +44,7 @@ class _MovieList3State extends State<MovieList3> {
                 child: ClipRRect(
                   borderRadius: kCornerRadius,
                   child: Image.network(
-                    '${widget.listInTheaters[index].image}',
+                    '${widget.listComingSoon[index].image}',
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -56,21 +56,21 @@ class _MovieList3State extends State<MovieList3> {
                   children: [
                     Container(
                         width: 200,
-                        child: Text('${widget.listInTheaters[index].title}',
+                        child: Text('${widget.listComingSoon[index].title}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: kMovieCardTitleStyle)),
                     Text(
-                      '${widget.listInTheaters[index].year}',
+                      '${widget.listComingSoon[index].year}',
                       style: kMovieCardYearStyle,
                     ),
                     GenreList(
-                        genreList: widget.listInTheaters[index].genreList),
+                        genreList: widget.listComingSoon[index].genreList),
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 13.0),
                       width: 200,
                       child: Text(
-                        '${widget.listInTheaters[index].plot}',
+                        '${widget.listComingSoon[index].plot}',
                         overflow: TextOverflow.ellipsis,
                         maxLines: 3,
                         style: kMovieCardPlotStyle,
@@ -79,7 +79,7 @@ class _MovieList3State extends State<MovieList3> {
                     Container(
                         width: 180,
                         child: Text(
-                            'Release Date: ${widget.listInTheaters[index].releaseState}',
+                            'Release Date: ${widget.listComingSoon[index].releaseState}',
                             style: kMovieCardReleaseStateStyle)),
                   ],
                 ),

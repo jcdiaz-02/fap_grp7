@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late TabController _tabController;
-  var mainGenreList= MainGenreList().getMainGenreList() as List<Genre>;
+  var mainGenreList = MainGenreList().getMainGenreList() as List<Genre>;
   var selectedGenres;
   @override
   void initState() {
@@ -87,29 +87,37 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   itemCount: mainGenreList.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         setState(() {
                           mainGenreList[index].toggleActive();
-                          selectedGenres= mainGenreList.where((element) => element.active==true);
-                          selectedGenres.forEach((element) { print(element.title);});
+                          selectedGenres = mainGenreList
+                              .where((element) => element.active == true);
+                          selectedGenres.forEach((element) {
+                            print(element.title);
+                          });
                           //print(mainGenreList[index].active);
                         });
                       },
                       child: Container(
-                        margin: EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          color: mainGenreList[index].active== true ? Colors.amberAccent : Colors.indigo,
-                          border: Border.all(
-                            width: 1.5, color: kPrimaryColor),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5))
-                        ),
-                        alignment: Alignment.center,
-                        width: 100,
-                        child: Text("${mainGenreList[index].title}")
-                      ),
+                          margin: EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                              color: mainGenreList[index].active == true
+                                  ? kSecondaryColor
+                                  : kBackgroundColor,
+                              border:
+                                  Border.all(width: 1.5, color: kPrimaryColor),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5))),
+                          alignment: Alignment.center,
+                          width: 100,
+                          child: Text("${mainGenreList[index].title}",
+                              style: TextStyle(
+                                color: mainGenreList[index].active == true
+                                    ? Colors.white
+                                    : Colors.black,
+                              ))),
                     );
-              }),
+                  }),
             ),
             Expanded(
               child: TabBarView(

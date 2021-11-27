@@ -1,10 +1,14 @@
 import 'intheaters.dart';
+import 'boxoffice.dart';
+import 'comingsoon.dart';
 
 class Movie {
   final List<InTheaters>? listInTheaters;
- //final List<Daily>? daily;
+  final List<BoxOffice>? listBoxOffice;
+  final List<ComingSoon>? listComingSoon;
 
-  Movie({this.listInTheaters});
+
+  Movie({this.listInTheaters, this.listComingSoon, this.listBoxOffice});
 
   factory Movie.fromJson(Map<String, dynamic> json) {
 
@@ -18,8 +22,30 @@ class Movie {
       listInTheaters.add(items);
     });
 
+
+    List<dynamic> boxOfficeData = json['items'];
+
+    List<BoxOffice>? listBoxOffice= [];
+
+    boxOfficeData.forEach((item) {
+      var items = BoxOffice.fromJson(item);
+      listBoxOffice.add(items);
+    });
+
+
+    List<dynamic> comingSoonData = json['items'];
+
+    List<ComingSoon>? listComingSoon = [];
+
+    comingSoonData.forEach((item) {
+      var items = ComingSoon.fromJson(item);
+      listComingSoon.add(items);
+    });
+
     return Movie(
-        listInTheaters: listInTheaters
+        listInTheaters: listInTheaters,
+        listBoxOffice: listBoxOffice,
+        listComingSoon: listComingSoon
     );
   }
 

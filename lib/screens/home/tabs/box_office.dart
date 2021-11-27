@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
-import '../components/movie_list_3.dart';
+import '../components/movie_list_2.dart';
 import 'package:fap_grp7/services/movie_network.dart';
 
-class ComingSoon extends StatefulWidget {
-  const ComingSoon({Key? key}) : super(key: key);
+class InTheaters extends StatefulWidget {
+  const InTheaters({Key? key}) : super(key: key);
 
   @override
-  _ComingSoonState createState() => _ComingSoonState();
+  _InTheatersState createState() => _InTheatersState();
 }
 
-class _ComingSoonState extends State<ComingSoon> {
+class _InTheatersState extends State<InTheaters>{
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<dynamic>(
-      future: MovieModel().getComingSoon(),
+      future: MovieModel().getBoxOffice(),
       builder: (context, snapshot){
         if (snapshot.hasData) {
           //print('the snapshot data:');
           if (snapshot.data == null) {
             return Text("Error getting Movies");
           } else {
-            return MovieList3(listComingSoon: snapshot.data.listComingSoon,);
+            return MovieList2(listBoxOffice: snapshot.data.listBoxOffice,);
           }
         } else {
           return Center(child: CircularProgressIndicator());
         }
       },
-    );;
+    );
+
   }
 }

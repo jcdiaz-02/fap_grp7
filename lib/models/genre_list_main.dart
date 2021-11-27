@@ -14,7 +14,7 @@ class MainGenreList{
       Genre("Drama",),
       Genre("Horror",),
       Genre("Animation"),];
-    genres!.forEach((element) { print(element.title);});
+    //genres!.forEach((element) { print(element.title);});
 
     return genres ;
   }

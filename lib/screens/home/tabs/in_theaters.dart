@@ -20,7 +20,7 @@ class _InTheatersState extends State<InTheaters>{
           if (snapshot.data == null) {
             return Text("Error getting Movies");
           } else {
-            return MovieList1(listInTheaters: snapshot.data.listInTheaters,);
+            return MovieList1(listInTheaters: snapshot.data.listInTheaters, );
           }
         } else {
           return Center(child: CircularProgressIndicator());
