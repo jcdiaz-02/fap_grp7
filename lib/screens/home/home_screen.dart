@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fap_grp7/constants.dart';
 
 import 'tabs/in_theaters.dart';
+import 'tabs/coming_soon.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -84,11 +85,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 children: const <Widget>[
                   InTheaters(),
                   Center(
-                    child: Text("It's rainy here"),
-                  ),
-                  Center(
                     child: Text("It's sunny here"),
                   ),
+                  ComingSoon(),
                 ],
               ),
             ),

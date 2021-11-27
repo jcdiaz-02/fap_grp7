@@ -12,6 +12,20 @@ class ComingSoon extends StatefulWidget {
 class _ComingSoonState extends State<ComingSoon> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return FutureBuilder<dynamic>(
+      future: MovieModel().getComingSoon(),
+      builder: (context, snapshot){
+        if (snapshot.hasData) {
+          //print('the snapshot data:');
+          if (snapshot.data == null) {
+            return Text("Error getting Movies");
+          } else {
+            return MovieList(listInTheaters: snapshot.data.listInTheaters,);
+          }
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+      },
+    );;
   }
 }
