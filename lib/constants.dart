@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+const kImageURL= 'https://image.tmdb.org/t/p/';
 // Colos that use in our app
 const kPrimaryColor = Color(0xFF0F044C);
 const kSecondaryColor= Color(0xFF141E61);
@@ -9,6 +10,7 @@ const kTextColor = Color(0xFF12153D);
 const kTextLightColor = Color(0xFF9A9BB2);
 const kFillStarColor = Color(0xFFFCC419);
 
+const kAppBarTitle= Text('MovQuiz');
 
 const kDefaultPadding = 20.0;
 const kTabHeight= 60.0;
@@ -36,6 +38,15 @@ const kTabUnselectedStyle = TextStyle(
   color: Color(0xFF787A91),
 );
 
+const kHomeTabStyle= TextStyle(
+    fontSize: 25,
+    fontWeight: FontWeight.bold,
+);
+
+const kHomeUnselectedTabStyle= TextStyle(
+    fontWeight: FontWeight.normal
+);
+
 const kMovieCardTitleStyle = TextStyle(
 fontSize: 18,
 fontWeight: FontWeight.bold,
@@ -57,3 +68,5 @@ const kMovieCardReleaseStateStyle= TextStyle(
 
 const kMovieCardGenreStyle= TextStyle(
 fontSize: 12,);
+
+const kTrendingImageBorderRadius= Radius.circular(15);

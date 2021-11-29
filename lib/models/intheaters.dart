@@ -7,7 +7,7 @@ class InTheaters {
   final String? image;
   final String? releaseState;
   final String? plot;
-  final List<MovieGenres>? genreList;
+  final List<MovieGenres  >? genreList;
 
   InTheaters({this.id, this.title, this.year, this.image, this.releaseState, this.plot, this.genreList});
 

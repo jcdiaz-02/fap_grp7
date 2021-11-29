@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import '../components/movie_list_2.dart';
 import 'package:fap_grp7/services/movie_network.dart';
 
-class InTheaters extends StatefulWidget {
-  const InTheaters({Key? key}) : super(key: key);
+class BoxOffice extends StatefulWidget {
+  const BoxOffice({Key? key}) : super(key: key);
 
   @override
-  _InTheatersState createState() => _InTheatersState();
+  _BoxOfficeState createState() => _BoxOfficeState();
 }
 
-class _InTheatersState extends State<InTheaters>{
+class _BoxOfficeState extends State<BoxOffice>{
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<dynamic>(

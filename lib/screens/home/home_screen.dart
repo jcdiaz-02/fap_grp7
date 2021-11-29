@@ -1,12 +1,8 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:fap_grp7/constants.dart';
+import 'package:flutter/material.dart';
+import 'package:fap_grp7/widgets/navigation_drawer_widget.dart';
 
-import 'tabs/in_theaters.dart';
-import 'tabs/coming_soon.dart';
-
-import 'package:fap_grp7/models/genre_list_main.dart';
-import 'package:fap_grp7/models/genre.dart';
+import 'package:fap_grp7/screens/home/tabs/movies/trending_week_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,125 +11,71 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
   late TabController _tabController;
-  var mainGenreList = MainGenreList().getMainGenreList() as List<Genre>;
-  var selectedGenres;
+
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: kBackgroundColor,
-        bottomNavigationBar: BottomAppBar(
-          color: Color(0xFF141E61),
-          child: TabBar(
-            controller: _tabController,
-            indicatorColor: Colors.amberAccent,
-            indicatorSize: TabBarIndicatorSize.label,
-            indicatorWeight: 2,
-            labelStyle: kTabStyle,
-            unselectedLabelStyle: kTabUnselectedStyle,
-            enableFeedback: false,
-            //isScrollable: true,
-            //indicator: Decoration(),
-            tabs: const <Widget>[
-              Tab(
-                  icon: Icon(
-                    Icons.movie_creation,
-                    size: kTabIconSize,
-                  ),
-                  height: kTabHeight,
-                  text: 'In Theaters'),
-              Tab(
-                  icon: Icon(
-                    Icons.local_movies,
-                    size: kTabIconSize,
-                  ),
-                  height: kTabHeight,
-                  text: 'Box Office'),
-              Tab(
-                icon: Icon(Icons.calendar_today, size: kTabIconSize),
-                height: kTabHeight,
-                text: 'Coming Soon',
+        child: Scaffold(
+          drawer: NavigationDrawerWidget(),
+          appBar: AppBar(
+            toolbarHeight: 50,
+            elevation: 0,
+            title: const Text(
+              'MovQuiz',
+              style: TextStyle(color: kPrimaryColor),
+            ),
+            centerTitle: true,
+            backgroundColor: kBackgroundColor,
+            iconTheme: IconThemeData(color: kPrimaryColor, size: kTabIconSize),
+          ),
+          backgroundColor: kBackgroundColor,
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              //home tab for movies and on tv
+              Container(
+                width: 300,
+                child: TabBar(
+                  indicatorColor: Colors.transparent,
+                  labelStyle: kHomeTabStyle,
+                  labelColor: kPrimaryColor,
+                  unselectedLabelStyle: kHomeUnselectedTabStyle,
+                  enableFeedback: false,
+                  controller: _tabController,
+                    tabs: const <Widget>[
+                      Tab(
+                          height: kTabHeight,
+                          text: 'Movies'
+                      ),
+                      Tab(
+                          height: kTabHeight,
+                          text: 'On Tv'
+                      ),
+
+                    ],
+                ),
               ),
+              SizedBox(height: 10),
+              //tab bar view
+              Expanded(
+                child: TabBarView(
+                    controller: _tabController,
+                    children: const <Widget>[
+                      TrendingMovies(),
+                      Text('hello 2')
+                    ]
+                ),
+              )
             ],
           ),
-        ),
-        appBar: AppBar(
-          toolbarHeight: 50,
-          elevation: 0,
-          backgroundColor: kPrimaryColor,
-          leading: const Icon(
-            Icons.menu,
-            size: 30,
-          ),
-          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
-          // bottom:
-          title: const Text('MovQuiz'),
-          centerTitle: true,
-        ),
-        body: Column(
-          children: [
-            Container(
-              height: 40,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: mainGenreList.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          mainGenreList[index].toggleActive();
-                          selectedGenres = mainGenreList
-                              .where((element) => element.active == true);
-                          selectedGenres.forEach((element) {
-                            print(element.title);
-                          });
-                          //print(mainGenreList[index].active);
-                        });
-                      },
-                      child: Container(
-                          margin: EdgeInsets.all(5.0),
-                          decoration: BoxDecoration(
-                              color: mainGenreList[index].active == true
-                                  ? kSecondaryColor
-                                  : kBackgroundColor,
-                              border:
-                                  Border.all(width: 1.5, color: kPrimaryColor),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          alignment: Alignment.center,
-                          width: 100,
-                          child: Text("${mainGenreList[index].title}",
-                              style: TextStyle(
-                                color: mainGenreList[index].active == true
-                                    ? Colors.white
-                                    : Colors.black,
-                              ))),
-                    );
-                  }),
-            ),
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: const <Widget>[
-                  InTheaters(),
-                  Center(
-                    child: Text("It's sunny here"),
-                  ),
-                  ComingSoon(),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+    ));
   }
 }

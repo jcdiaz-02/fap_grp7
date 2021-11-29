@@ -1,4 +1,3 @@
-import 'movie_genres.dart';
 
 class BoxOffice {
   final String? id;
@@ -12,7 +11,6 @@ class BoxOffice {
 
 
   factory BoxOffice.fromJson(Map<String, dynamic> json) {
-    //print(json);
     return BoxOffice(
         id: json['id'],
         rank:  json['rank'],

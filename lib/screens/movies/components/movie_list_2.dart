@@ -36,7 +36,7 @@ class _MovieList2State extends State<MovieList2> {
                     )
                   ]),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
                     height: 200,
@@ -49,30 +49,31 @@ class _MovieList2State extends State<MovieList2> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                            width: 200,
-                            child: Text('${widget.listBoxOffice[index].title}',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: kMovieCardTitleStyle)),
-                        Text(
-                          '${widget.listBoxOffice[index].rank}',
-                          style: kMovieCardYearStyle,
-                        ),
-                        GenreList(
-                            genreList: widget.listBoxOffice[index].genreList),
-                        Container(
-                            width: 180,
-                            child: Text(
-                                'Release Date: ${widget.listBoxOffice[index].weeks}',
-                                style: kMovieCardReleaseStateStyle)),
-                      ],
+                  Container(
+                    width: 60,
+                    alignment: Alignment.center,
+                    child: Text(
+                      '${widget.listBoxOffice[index].rank}',
+                      style: TextStyle(
+                        fontSize: 40,
+                      ),
                     ),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                          width: 180,
+                          child: Text('${widget.listBoxOffice[index].title}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: kMovieCardTitleStyle)),
+                      Container(
+                          width: 180,
+                          child: Text(
+                              'Current Week: ${widget.listBoxOffice[index].weeks}',
+                              style: kMovieCardReleaseStateStyle)),
+                    ],
                   ),
                 ],
               ),
