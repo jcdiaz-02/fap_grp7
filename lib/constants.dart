@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'screens/movie_info_page/movie_info_screen.dart';
 
 const kImageURL= 'https://image.tmdb.org/t/p/';
-// Colos that use in our app
+// Colors that use in our app
 const kPrimaryColor = Color(0xFF0F044C);
 const kSecondaryColor= Color(0xFF141E61);
 const kBackgroundColor=  Color(0xFFEEEEEE);
+const kSubColor= Color(0xFF787A91);
+const kSubColor2= Color(0xFF535463);
+
 const kTextColor = Color(0xFF12153D);
 const kTextLightColor = Color(0xFF9A9BB2);
 const kFillStarColor = Color(0xFFFCC419);
@@ -14,6 +18,7 @@ const kAppBarTitle= Text('MovQuiz');
 
 const kDefaultPadding = 20.0;
 const kTabHeight= 60.0;
+const kHomeTabHeight= 40.0;
 const kTabIconSize= 20.0;
 
 const kCornerRadius = BorderRadius.only(
@@ -70,3 +75,13 @@ const kMovieCardGenreStyle= TextStyle(
 fontSize: 12,);
 
 const kTrendingImageBorderRadius= Radius.circular(15);
+
+void kGoToMovieInfoScreen(BuildContext context, int id, int type){
+  Navigator.of(context).push(MaterialPageRoute(
+    builder: (context) => MovieInfoScreen(movieId: id, type: type),
+  ));
+}
+
+const kMovieInfoBackDropBorderRadius= BorderRadius.only(
+    bottomLeft: Radius.elliptical(250, 80),
+    bottomRight: Radius.elliptical(250, 80));
