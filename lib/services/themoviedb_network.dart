@@ -10,12 +10,18 @@ const theMovieDBOnTvTrending= 'https://api.themoviedb.org/3/trending/tv/';
 const theMovieDBMovieInfo= 'https://api.themoviedb.org/3/movie';
 const theMovieDBOnTvInfo= 'https://api.themoviedb.org/3/tv';
 
+const theMovieDBSearch= 'https://api.themoviedb.org/3/search/multi';
+
 class TheMovieDBModel {
   TrendingMovie? trendingMoviesData;
   TrendingOnTv? trendingOnTvsData;
 
   MovieInfo? movieInfo;
   OnTvInfo? onTvInfo;
+
+  CreditsList? creditsList;
+
+  SearchResultsList? searchResultsList;
 
   Future<dynamic>? getTrendingMoviesWeek() async{
     http.Response response= await http.get(
@@ -95,4 +101,46 @@ class TheMovieDBModel {
 
     return onTvInfo;
   }
+
+  Future<dynamic>? getMovieCredits(int id) async{
+    http.Response response= await http.get(
+        Uri.parse('$theMovieDBMovieInfo/$id/credits?api_key=$apiKey'));
+    if (response.statusCode == 200) {
+      creditsList= CreditsList.fromJson(jsonDecode(response.body));
+    }
+    else{
+      print('Error Getting Movie Credits');
+    }
+
+    return creditsList;
+  }
+
+  Future<dynamic>? getOnTvCredits(int id) async{
+    http.Response response= await http.get(
+        Uri.parse('$theMovieDBOnTvInfo/$id/credits?api_key=$apiKey'));
+    if (response.statusCode == 200) {
+      creditsList= CreditsList.fromJson(jsonDecode(response.body));
+    }
+    else{
+      print('Error Getting Movie Credits');
+    }
+
+    return creditsList;
+  }
+
+
+  Future<dynamic>? getSearchInfo(String query) async{
+    http.Response response= await http.get(
+        Uri.parse('$theMovieDBSearch?api_key=$apiKey&language=en-US&query=$query&page=1'));
+    if (response.statusCode == 200) {
+      searchResultsList= SearchResultsList.fromJson(jsonDecode(response.body));
+    }
+    else{
+      print('Error Getting Search Results');
+    }
+
+    return searchResultsList;
+  }
+
+
 }

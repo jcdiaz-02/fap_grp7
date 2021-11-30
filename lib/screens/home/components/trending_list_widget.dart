@@ -1,7 +1,7 @@
 import 'package:fap_grp7/constants.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fap_grp7/screens/movie_info_page/movie_info_screen.dart';
+import 'package:fap_grp7/screens/info_page/info_page_screen.dart';
 
 class TrendingList extends StatefulWidget {
   const TrendingList({Key? key,@required this.futureData, @required this.type})
@@ -23,7 +23,7 @@ class _TrendingListState extends State<TrendingList> {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: (){
-                kGoToMovieInfoScreen(context, widget.futureData[index].id, widget.type);
+                kGoToInfoScreen(context, widget.futureData[index].id, widget.type);
               },
               child: Container(
                 alignment: Alignment.center,
@@ -34,7 +34,7 @@ class _TrendingListState extends State<TrendingList> {
                     Stack(
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.all(kTrendingImageBorderRadius),
+                          borderRadius: BorderRadius.all(kCardImageBorderRadius),
                           child: Image.network(
                               '$kImageURL/w154/${widget.futureData[index].posterPath}'),
                         ),
@@ -43,7 +43,7 @@ class _TrendingListState extends State<TrendingList> {
                           padding: const EdgeInsets.all(5.0),
                           alignment: Alignment.bottomCenter,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(bottomRight: kTrendingImageBorderRadius, bottomLeft: kTrendingImageBorderRadius),
+                            borderRadius: BorderRadius.only(bottomRight: kCardImageBorderRadius, bottomLeft: kCardImageBorderRadius),
                             gradient: LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,

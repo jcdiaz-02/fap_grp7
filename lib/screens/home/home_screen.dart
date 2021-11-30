@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
         child: Scaffold(
           drawer: NavigationDrawerWidget(),
           appBar: AppBar(
+            actions: [IconButton(onPressed: () {kGoToSearchScreen(context);}, icon: Icon(Icons.search))],
             toolbarHeight: 50,
             elevation: 0,
             title: const Text(

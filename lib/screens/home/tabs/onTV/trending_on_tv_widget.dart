@@ -23,4 +23,6 @@ class _TrendingOnTvsState extends State<TrendingOnTvs> {
       ),
     );
   }
+
 }
+
