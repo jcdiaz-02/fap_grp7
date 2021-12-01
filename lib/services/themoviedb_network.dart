@@ -11,6 +11,7 @@ const theMovieDBMovieInfo= 'https://api.themoviedb.org/3/movie';
 const theMovieDBOnTvInfo= 'https://api.themoviedb.org/3/tv';
 
 const theMovieDBSearch= 'https://api.themoviedb.org/3/search/multi';
+const theMovieDBSimilarMovie = 'https://api.themoviedb.org/3/';
 
 class TheMovieDBModel {
   TrendingMovie? trendingMoviesData;
@@ -22,6 +23,8 @@ class TheMovieDBModel {
   CreditsList? creditsList;
 
   SearchResultsList? searchResultsList;
+  SimilarMovieResultsList? similarMovieResultsList;
+  SimilarTVResultsList? similarTVResultsList;
 
   Future<dynamic>? getTrendingMoviesWeek() async{
     http.Response response= await http.get(
@@ -142,5 +145,27 @@ class TheMovieDBModel {
     return searchResultsList;
   }
 
+  Future<dynamic>? getSimilarInfo(int typeNumber, int id) async {
+    late String type;
+    if (typeNumber == 0)
+      type = 'movie';
+    else if (typeNumber == 1) type = 'tv';
+
+    http.Response response = await http.get(Uri.parse(
+        '$theMovieDBSimilarMovie$type/$id/similar?api_key=$apiKey&language=en-US&page=1'));
+    if (response.statusCode == 200) {
+      if (typeNumber == 0) {
+        similarMovieResultsList =
+            SimilarMovieResultsList.fromJson(jsonDecode(response.body));
+        return similarMovieResultsList;
+      } else if (typeNumber == 1) {
+        similarTVResultsList =
+            SimilarTVResultsList.fromJson(jsonDecode(response.body));
+        return similarTVResultsList;
+      }
+    } else {
+      print('Error Getting Search Results');
+    }
+  }
 
 }

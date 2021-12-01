@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fap_grp7/constants.dart';
 import 'package:intl/intl.dart';
 
+import 'package:fap_grp7/models/themovieDB/the_movie_db_info.dart';
+
 class InfoCardWidget extends StatefulWidget {
   const InfoCardWidget({Key? key, this.info}) : super(key: key);
 
@@ -52,22 +54,13 @@ class _InfoCardWidgetState extends State<InfoCardWidget> {
                   style: kMovieCardYearStyle,
                   maxLines: 2,
                 ),
+                (widget.info is SearchResultsList)? Text('${widget.info.mediaType}',maxLines: 2,): SizedBox(height: 16,),
 
-                Text(
-                  '${widget.info.mediaType}',
-                  maxLines: 2,
-                ),
                 SizedBox(
                   height: 20,
                 ),
 
-                Text(
-                  '${widget.info.overview}',
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 3,
-                  style: kMovieCardPlotStyle,
-                ),
-
+                (widget.info is SearchResultsList)? Text('${widget.info.overview}',maxLines: 2,): SizedBox(height: 16,),
                 SizedBox(
                     height: 10
                 ),

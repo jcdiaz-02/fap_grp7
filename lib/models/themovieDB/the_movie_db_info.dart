@@ -1,6 +1,8 @@
 import 'genre_list.dart';
 import 'credits_info.dart';
 import 'search_results.dart';
+import 'similar_movie_results.dart';
+import 'similar_tv_results.dart';
 
 class MovieInfo {
   final int? id;
@@ -137,4 +139,47 @@ List<GenreList>? getGenreInfoList(json){
 
 }
 
+class SimilarMovieResultsList {
+  final List<SimilarMovieResults>? similarMovieResultsList;
+
+  SimilarMovieResultsList({this.similarMovieResultsList});
+
+  factory SimilarMovieResultsList.fromJson(Map<String, dynamic> json) {
+    List<dynamic> similarMovieResultsData = json['results'];
+
+    List<SimilarMovieResults>? similarMovieResultsList = [];
+
+    similarMovieResultsData.forEach((item) {});
+
+    for (int i = 0; i < similarMovieResultsData.length; i++) {
+      var searchItem = SimilarMovieResults.fromJson(similarMovieResultsData[i]);
+      similarMovieResultsList.add(searchItem);
+    }
+    return SimilarMovieResultsList(
+      similarMovieResultsList: similarMovieResultsList,
+    );
+  }
+}
+
+class SimilarTVResultsList {
+  final List<SimilarTVResults>? similarTVResultsList;
+
+  SimilarTVResultsList({this.similarTVResultsList});
+
+  factory SimilarTVResultsList.fromJson(Map<String, dynamic> json) {
+    List<dynamic> similarTVResultsData = json['results'];
+
+    List<SimilarTVResults>? similarTVResultsList = [];
+
+    similarTVResultsData.forEach((item) {});
+
+    for (int i = 0; i < similarTVResultsData.length; i++) {
+      var searchItem = SimilarTVResults.fromJson(similarTVResultsData[i]);
+      similarTVResultsList.add(searchItem);
+    }
+    return SimilarTVResultsList(
+      similarTVResultsList: similarTVResultsList,
+    );
+  }
+}
 
