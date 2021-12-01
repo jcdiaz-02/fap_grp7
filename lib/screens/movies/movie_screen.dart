@@ -36,7 +36,7 @@ class _MovieScreenState extends State<MovieScreen> with TickerProviderStateMixin
           backgroundColor: kPrimaryColor,
           actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
           // bottom:
-          title: kAppBarTitle,
+          title: Text(kAppBarTitle),
           centerTitle: true,
         ),
         backgroundColor: kBackgroundColor,

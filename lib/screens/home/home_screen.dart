@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
             toolbarHeight: 50,
             elevation: 0,
             title: const Text(
-              'MovQuiz',
+              kAppBarTitle,
               style: TextStyle(color: kPrimaryColor),
             ),
             centerTitle: true,
