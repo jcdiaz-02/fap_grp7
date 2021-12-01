@@ -54,7 +54,7 @@ class _SearchPageScreenState extends State<SearchPageScreen> {
                     print(snapshot.data);
                     if (snapshot.hasData) {
                       if (snapshot.data == null) {
-                        return Text("Error getting Information");
+                        return Text("Error getting Search");
                       } else {
                         return SearchResultsListWidget(searchResultsList: snapshot.data.searchResultsList);
                       }
