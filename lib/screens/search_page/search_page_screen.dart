@@ -59,7 +59,7 @@ class _SearchPageScreenState extends State<SearchPageScreen> {
                         return SearchResultsListWidget(searchResultsList: snapshot.data.searchResultsList);
                       }
                     } else {
-                      return Container(height: 500,child: Center(child: Text('Search Results'),));
+                      return Container(height: 500,child: Center(child: Text('Search Results', style: TextStyle(fontSize: 20),),));
                     }
                   }
                 ),
