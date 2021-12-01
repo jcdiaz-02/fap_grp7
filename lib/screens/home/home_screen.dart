@@ -30,10 +30,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
             actions: [IconButton(onPressed: () {kGoToSearchScreen(context);}, icon: Icon(Icons.search))],
             toolbarHeight: 50,
             elevation: 0,
-            title: const Text(
-              kAppBarTitle,
-              style: TextStyle(color: kPrimaryColor),
-            ),
+            title: kAppBarTitle,
             centerTitle: true,
             backgroundColor: kBackgroundColor,
             iconTheme: IconThemeData(color: kPrimaryColor, size: kTabIconSize),

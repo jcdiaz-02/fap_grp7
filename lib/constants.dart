@@ -16,7 +16,15 @@ const kTextColor = Color(0xFF12153D);
 const kTextLightColor = Color(0xFF9A9BB2);
 const kFillStarColor = Color(0xFFFCC419);
 
-const kAppBarTitle = 'FlixHub';
+const kAppBarTitle = Text(
+  'FlixHub',
+  style: TextStyle(color: kPrimaryColor, fontFamily: 'MajorMonoDisplay', fontWeight: FontWeight.bold, fontSize: 25),
+);
+
+const kAppBarTitle2 = Text(
+  'FlixHub',
+  style: TextStyle(fontFamily: 'MajorMonoDisplay', fontWeight: FontWeight.bold, fontSize: 25),
+);
 
 const kDefaultPadding = 20.0;
 const kTabHeight = 60.0;

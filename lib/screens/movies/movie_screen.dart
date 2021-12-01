@@ -2,12 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fap_grp7/constants.dart';
 
-import 'tabs/in_theaters.dart';
-import 'tabs/coming_soon.dart';
-import 'tabs/box_office.dart';
+import 'tabs/movies_now_playing.dart';
+import 'tabs/movies_upcoming.dart';
 
-import 'package:fap_grp7/models/genre_list_main.dart';
-import 'package:fap_grp7/models/genre.dart';
+
+
 
 class MovieScreen extends StatefulWidget {
   const MovieScreen({Key? key}) : super(key: key);
@@ -18,12 +17,11 @@ class MovieScreen extends StatefulWidget {
 
 class _MovieScreenState extends State<MovieScreen> with TickerProviderStateMixin {
   late TabController _tabController;
-  var mainGenreList = MainGenreList().getMainGenreList() as List<Genre>;
-  var selectedGenres;
+
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -34,9 +32,9 @@ class _MovieScreenState extends State<MovieScreen> with TickerProviderStateMixin
           toolbarHeight: 50,
           elevation: 0,
           backgroundColor: kPrimaryColor,
-          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
+          actions: [IconButton(onPressed: () {kGoToSearchScreen(context);}, icon: Icon(Icons.search))],
           // bottom:
-          title: Text(kAppBarTitle),
+          title: kAppBarTitle2,
           centerTitle: true,
         ),
         backgroundColor: kBackgroundColor,
@@ -61,13 +59,6 @@ class _MovieScreenState extends State<MovieScreen> with TickerProviderStateMixin
                   height: kTabHeight,
                   text: 'In Theaters'),
               Tab(
-                  icon: Icon(
-                    Icons.local_movies,
-                    size: kTabIconSize,
-                  ),
-                  height: kTabHeight,
-                  text: 'Box Office'),
-              Tab(
                 icon: Icon(Icons.calendar_today, size: kTabIconSize),
                 height: kTabHeight,
                 text: 'Coming Soon',
@@ -77,52 +68,12 @@ class _MovieScreenState extends State<MovieScreen> with TickerProviderStateMixin
         ),
         body: Column(
           children: [
-            Container(
-              height: 40,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: mainGenreList.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          mainGenreList[index].toggleActive();
-                          selectedGenres = mainGenreList
-                              .where((element) => element.active == true);
-                          selectedGenres.forEach((element) {
-                            print(element.title);
-                          });
-                          //print(mainGenreList[index].active);
-                        });
-                      },
-                      child: Container(
-                          margin: EdgeInsets.all(5.0),
-                          decoration: BoxDecoration(
-                              color: mainGenreList[index].active == true
-                                  ? kSecondaryColor
-                                  : kBackgroundColor,
-                              border:
-                                  Border.all(width: 1.5, color: kPrimaryColor),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          alignment: Alignment.center,
-                          width: 100,
-                          child: Text("${mainGenreList[index].title}",
-                              style: TextStyle(
-                                color: mainGenreList[index].active == true
-                                    ? Colors.white
-                                    : Colors.black,
-                              ))),
-                    );
-                  }),
-            ),
             Expanded(
               child: TabBarView(
                 controller: _tabController,
-                children: const <Widget>[
-                  InTheaters(),
-                  BoxOffice(),
-                  ComingSoon(),
+                children:  <Widget>[
+                  MoviesNowPlaying(),
+                  MoviesUpcoming(),
                 ],
               ),
             ),

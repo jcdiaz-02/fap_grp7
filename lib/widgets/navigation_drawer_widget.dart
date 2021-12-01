@@ -3,6 +3,8 @@ import 'package:fap_grp7/constants.dart';
 
 import 'package:fap_grp7/screens/home/home_screen.dart';
 import 'package:fap_grp7/screens/movies/movie_screen.dart';
+import 'package:fap_grp7/screens/on_tv/on_tv_screen.dart';
+
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
@@ -28,8 +30,14 @@ class NavigationDrawerWidget extends StatelessWidget {
                   const SizedBox(height: 16),
                   buildMenuItem(
                     text: 'Movies',
-                    icon: Icons.workspaces_outline,
+                    icon: Icons.movie_creation_outlined,
                     onClicked: () => selectedItem(context, 1),
+                  ),
+                  const SizedBox(height: 16),
+                  buildMenuItem(
+                    text: 'On Tv',
+                    icon: Icons.monitor,
+                    onClicked: () => selectedItem(context, 2),
                   ),
                   Divider(color: Colors.white70),
                   const SizedBox(height: 16),
@@ -107,6 +115,11 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => MovieScreen(),
+        ));
+        break;
+      case 2:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => OnTvScreen(),
         ));
         break;
     }

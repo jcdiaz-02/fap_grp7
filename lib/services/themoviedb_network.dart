@@ -2,16 +2,18 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:fap_grp7/models/themovieDB/the_movie_db_trending.dart';
 import 'package:fap_grp7/models/themovieDB/the_movie_db_info.dart';
+import 'package:fap_grp7/models/themovieDB/the_movie_db_lists.dart';
 
 const apiKey= '42e8cb86b4f3b37110bb30308d5f7ad5';
 const theMovieDBMovieTrending= 'https://api.themoviedb.org/3/trending/movie/';
 const theMovieDBOnTvTrending= 'https://api.themoviedb.org/3/trending/tv/';
 
-const theMovieDBMovieInfo= 'https://api.themoviedb.org/3/movie';
-const theMovieDBOnTvInfo= 'https://api.themoviedb.org/3/tv';
+const theMovieDBMovie= 'https://api.themoviedb.org/3/movie';
+const theMovieDBOnTv= 'https://api.themoviedb.org/3/tv';
 
 const theMovieDBSearch= 'https://api.themoviedb.org/3/search/multi';
 const theMovieDBSimilarMovie = 'https://api.themoviedb.org/3/';
+
 
 class TheMovieDBModel {
   TrendingMovie? trendingMoviesData;
@@ -25,6 +27,9 @@ class TheMovieDBModel {
   SearchResultsList? searchResultsList;
   SimilarMovieResultsList? similarMovieResultsList;
   SimilarTVResultsList? similarTVResultsList;
+
+  MoviesList? moviesList;
+  OnTvsList? onTvsList;
 
   Future<dynamic>? getTrendingMoviesWeek() async{
     http.Response response= await http.get(
@@ -80,7 +85,7 @@ class TheMovieDBModel {
 
   Future<dynamic>? getMovieInfo(int id) async{
     http.Response response= await http.get(
-        Uri.parse('$theMovieDBMovieInfo/$id?api_key=$apiKey'));
+        Uri.parse('$theMovieDBMovie/$id?api_key=$apiKey'));
     if (response.statusCode == 200) {
       movieInfo= MovieInfo.fromJson(jsonDecode(response.body));
     }
@@ -94,7 +99,7 @@ class TheMovieDBModel {
 
   Future<dynamic>? getOnTvInfo(int id) async{
     http.Response response= await http.get(
-        Uri.parse('$theMovieDBOnTvInfo/$id?api_key=$apiKey'));
+        Uri.parse('$theMovieDBOnTv/$id?api_key=$apiKey'));
     if (response.statusCode == 200) {
       onTvInfo= OnTvInfo.fromJson(jsonDecode(response.body));
     }
@@ -107,7 +112,7 @@ class TheMovieDBModel {
 
   Future<dynamic>? getMovieCredits(int id) async{
     http.Response response= await http.get(
-        Uri.parse('$theMovieDBMovieInfo/$id/credits?api_key=$apiKey'));
+        Uri.parse('$theMovieDBMovie/$id/credits?api_key=$apiKey'));
     if (response.statusCode == 200) {
       creditsList= CreditsList.fromJson(jsonDecode(response.body));
     }
@@ -120,7 +125,7 @@ class TheMovieDBModel {
 
   Future<dynamic>? getOnTvCredits(int id) async{
     http.Response response= await http.get(
-        Uri.parse('$theMovieDBOnTvInfo/$id/credits?api_key=$apiKey'));
+        Uri.parse('$theMovieDBOnTv/$id/credits?api_key=$apiKey'));
     if (response.statusCode == 200) {
       creditsList= CreditsList.fromJson(jsonDecode(response.body));
     }
@@ -130,7 +135,6 @@ class TheMovieDBModel {
 
     return creditsList;
   }
-
 
   Future<dynamic>? getSearchInfo(String query) async{
     http.Response response= await http.get(
@@ -166,6 +170,59 @@ class TheMovieDBModel {
     } else {
       print('Error Getting Search Results');
     }
+  }
+
+  Future<dynamic>? getMovieNowPlaying() async{
+    http.Response response= await http.get(
+        Uri.parse('$theMovieDBMovie/now_playing?api_key=$apiKey&language=en-US&page=1'));
+    if (response.statusCode == 200) {
+      moviesList= MoviesList.fromJson(jsonDecode(response.body));
+    }
+    else{
+      print('Error Getting Now Playing Movies');
+    }
+
+    return moviesList;
+  }
+
+
+  Future<dynamic>? getMovieUpcoming() async{
+    http.Response response= await http.get(
+        Uri.parse('$theMovieDBMovie/upcoming?api_key=$apiKey&language=en-US&page=1'));
+    if (response.statusCode == 200) {
+      moviesList= MoviesList.fromJson(jsonDecode(response.body));
+    }
+    else{
+      print('Error Getting Upcoming Movies ');
+    }
+
+    return moviesList;
+  }
+
+  Future<dynamic>? getOnTvOnAir() async{
+    http.Response response= await http.get(
+        Uri.parse('$theMovieDBOnTv/on_the_air?api_key=$apiKey&language=en-US&page=1'));
+    if (response.statusCode == 200) {
+      onTvsList= OnTvsList.fromJson(jsonDecode(response.body));
+    }
+    else{
+      print('Error Getting Shows On Air ');
+    }
+
+    return onTvsList;
+  }
+
+  Future<dynamic>? getOnTvPopular() async{
+    http.Response response= await http.get(
+        Uri.parse('$theMovieDBOnTv/popular?api_key=$apiKey&language=en-US&page=1'));
+    if (response.statusCode == 200) {
+      onTvsList= OnTvsList.fromJson(jsonDecode(response.body));
+    }
+    else{
+      print('Error Getting Popular Shows');
+    }
+
+    return onTvsList;
   }
 
 }

@@ -1,4 +1,4 @@
-import 'package:fap_grp7/screens/home/similar_movies.dart';
+import 'package:fap_grp7/screens/info_page/components/similar_movies.dart';
 import 'package:flutter/material.dart';
 import 'package:fap_grp7/constants.dart';
 import 'package:fap_grp7/services/themoviedb_network.dart';

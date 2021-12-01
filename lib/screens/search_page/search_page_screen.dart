@@ -51,7 +51,6 @@ class _SearchPageScreenState extends State<SearchPageScreen> {
                 child: FutureBuilder<dynamic>(
                   future: _query,
                   builder:  (context, snapshot) {
-                    print(snapshot.data);
                     if (snapshot.hasData) {
                       if (snapshot.data == null) {
                         return Text("Error getting Search");

@@ -25,12 +25,7 @@ class _SearchResultsListWidgetState extends State<SearchResultsListWidget> {
       child: ListView.builder(
           itemCount: widget.searchResultsList.length,
           itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: (){
-                kGoToInfoScreen(context, widget.searchResultsList[index].id, widget.searchResultsList[index].type);
-              },
-              child: InfoCardWidget(info: widget.searchResultsList[index],)
-            );
+            return InfoCardWidget(info: widget.searchResultsList[index]);
           }),
     );
   }
