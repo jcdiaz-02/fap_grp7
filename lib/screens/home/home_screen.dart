@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
             children: [
               //home tab for movies and on tv
               Container(
-                width: 300,
+                width: 250,
                 child: TabBar(
                   indicatorColor: Colors.transparent,
                   labelStyle: kHomeTabStyle,

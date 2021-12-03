@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fap_grp7/constants.dart';
 import 'package:intl/intl.dart';
 
+
 import 'package:fap_grp7/models/themovieDB/the_movie_db_info.dart';
 import 'package:fap_grp7/models/themovieDB/lists_info.dart';
 import 'package:fap_grp7/models/themovieDB/search_results.dart';
@@ -17,8 +18,11 @@ class InfoCardWidget extends StatefulWidget {
 
 class _InfoCardWidgetState extends State<InfoCardWidget> {
 
+
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData;
+    queryData= MediaQuery.of(context);
     return GestureDetector(
       onTap: (){
         kGoToInfoScreen(context, widget.info.id, widget.info.type);
@@ -44,8 +48,7 @@ class _InfoCardWidgetState extends State<InfoCardWidget> {
             SizedBox(
               width: 20,
             ),
-            Container(
-              width: 150,
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

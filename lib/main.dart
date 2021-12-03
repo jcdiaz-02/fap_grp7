@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Movie App',
       theme: ThemeData(
+        // platform: TargetPlatform.iOS,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: LoadingScreen(),

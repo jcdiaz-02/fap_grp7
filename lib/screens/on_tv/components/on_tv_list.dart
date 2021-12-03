@@ -17,7 +17,7 @@ class _OnTvListState extends State<OnTvList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
         child: ListView.builder(
           itemCount: widget.listMovies.length,
           itemBuilder: (context, index) {
